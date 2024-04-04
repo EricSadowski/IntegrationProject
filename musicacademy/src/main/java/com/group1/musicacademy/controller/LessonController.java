@@ -20,6 +20,12 @@ public class LessonController {
         return "New lesson is added";
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteLesson(@PathVariable int id) {
+        lessonService.deleteById(id);
+        return "Lesson with id " + id + " is deleted";
+    }
+
     @GetMapping("/getAll")
     public List<Lesson> getAllLessons(){
         return lessonService.getAllLessons();

@@ -28,14 +28,33 @@ const Lesson = () => {
     })
   }
 
-  useEffect(()=>{
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8081/lesson/delete/${id}`, {
+      method: "DELETE"
+    })
+    .then(() => {
+      console.log("Lesson deleted");
+      // Update the list of lessons after deleting a lesson
+      fetchLessons();
+    })
+    .catch(error => {
+      console.error("Error deleting lesson:", error);
+      // Handle any error occurred during deletion
+    });
+  };
+
+  const fetchLessons = () => {
     fetch("http://localhost:8081/lesson/getAll")
-    .then(res=>res.json())
-    .then((result)=>{
+      .then(res => res.json())
+      .then((result) => {
         setLessons(result);
-    }
-    )
-  }, [])
+      });
+  };
+
+
+  useEffect(() => {
+    fetchLessons();
+  }, []);
 
   return (
     <div>
@@ -53,7 +72,7 @@ const Lesson = () => {
                     Id: {lesson.id} <br/>
                     Name: {lesson.name} <br/>
                     Date: {lesson.start} <br/>
-
+                    <button onClick={() => handleDelete(lesson.id)}>Delete</button>
                 </div>
             ))}
         </div>

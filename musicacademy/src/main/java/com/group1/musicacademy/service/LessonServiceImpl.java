@@ -21,4 +21,9 @@ public class LessonServiceImpl implements LessonService {
     public List<Lesson> getAllLessons() {
         return lessonRepository.findAll();
     }
+
+    @Override
+    public void deleteById(int theId) {
+        lessonRepository.deleteById(theId);
+    }
 }
