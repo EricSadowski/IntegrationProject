@@ -3,6 +3,7 @@ package com.group1.musicacademy.controller;
 import com.group1.musicacademy.model.Lesson;
 import com.group1.musicacademy.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,12 @@ import java.util.List;
 public class LessonController {
     @Autowired
     private LessonService lessonService;
+
+    @GetMapping
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("This is lesson page");
+    }
+
 
     @PostMapping("/add")
     public String add(@RequestBody Lesson lesson){
