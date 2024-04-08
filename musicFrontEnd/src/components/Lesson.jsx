@@ -23,9 +23,19 @@ const Lesson = () => {
         method:"POST",
         headers:{"Content-Type": "application/json"},
         body:JSON.stringify(lesson)
-    }).then(()=>{
-        console.log("New lesson added")
-    })
+    }).then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+    console.log('Lesson added:', data);
+    fetchLessons();
+})
+.catch(error => {
+    console.error('Error adding lesson:', error);
+});
   }
 
   const handleDelete = (id) => {
