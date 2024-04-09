@@ -53,6 +53,7 @@ function Register() {
   };
 
   return (
+    document.title ="Register",
     <>
       <title>Register</title>
       <div className='page-container'>
