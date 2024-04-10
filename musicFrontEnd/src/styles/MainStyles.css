@@ -30,8 +30,15 @@
   h1 {
     font-size: 4rem;
   }
-
+  /**/
   .register-form {
     position: fixed;
     top: 30rem;
   }
+
+  /*
+  @media (max-width: 1200px){
+  .container{
+    padding-left: 5%;
+    padding-right: 5%;
+  }*/

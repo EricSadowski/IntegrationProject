@@ -1,7 +1,7 @@
 nav {
     width: 100%;
     color: white;
-    padding: 1rem;
+    padding: 1rem;/*padding: 4px 0;*/
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@ nav {
 }
 
 .logo {
-    width: 15rem;
+    width: 15rem; /*width: 180px; only*/
     position: fixed;
     top: 0;
     left: 7rem;
@@ -20,7 +20,7 @@ nav {
 
 .nav-links {
     display: flex;
-    padding-right: 46rem;
+    padding-right: 20rem;
 }
 
 nav ul li {
@@ -30,11 +30,19 @@ nav ul li {
     font-size: 2rem;
 }
 
+/*nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 5px 20px;
+    font-size: 16px;
+}*/
+
 nav ul li a {
     text-decoration: none;
     color: white;
     transition: color 1s;
 }
+/**/
 
 nav ul li a:hover {
     color: orange;
@@ -53,6 +61,66 @@ nav ul li a:hover {
     right: 10rem;
 }
 
+/*
+.btn{
+  background: #FFF;
+  color: #212121;
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+*/
+
 .btn:hover {
     color: orange;
+}
+
+.btn.dark-btn{
+    background: orange;
+    color: #fff;
+  }
+
+/* ----- media query ----------- */
+@media (max-width: 1000px){
+    .logo{
+        width: 140px;
+    }
+    nav ul li{
+        margin: 10px 15px;
+    }
+}
+
+@media (max-width: 840px){
+    nav{
+        padding: 15px 0;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: 0px;
+        bottom: 0;
+        background: #212EA0;
+        z-index: -1;
+        width: 200px;
+        padding-top: 70px;
+        transition: 0.5s;
+    }
+    nav ul li{
+        display: block;
+        margin: 25px 40px;
+    }
+    .menu-icon{
+        display: block;
+        width: 30px;
+        cursor: pointer;
+    }
+    .hide-mobile-menu{
+        right: -200px;
+    }
 }

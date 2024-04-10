@@ -12,7 +12,7 @@ function Home() {
       <Hero />
       
       {/* Main content */}
-      <h1 className='h1-home'>Welcome to Music Academy!</h1>
+      
     </div>
   );
 }

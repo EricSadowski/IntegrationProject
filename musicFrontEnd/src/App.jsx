@@ -10,7 +10,7 @@ import Lessons from './pages/lessons';
 function App() {
   return (
     <Router>
-      <div className='page-container'>
+      <div >
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
