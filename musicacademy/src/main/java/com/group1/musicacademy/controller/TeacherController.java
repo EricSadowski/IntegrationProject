@@ -17,13 +17,13 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    @GetMapping
-    public ResponseEntity<String> home(){
-        return ResponseEntity.ok("Hello, This is teacher's homePage");
-    }
+//    @GetMapping
+//    public ResponseEntity<String> home(){
+//        return ResponseEntity.ok("Hello, This is teacher's homePage");
+//    }
 
     //get all teachers
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Teacher>> getAllTeachers(){
         List<Teacher> teachers = teacherService.getAllTeachers();
         return new ResponseEntity<>(teachers, HttpStatus.OK);
