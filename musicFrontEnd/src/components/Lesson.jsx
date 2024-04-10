@@ -49,7 +49,6 @@ const Lesson = () => {
     })
     .catch(error => {
       console.error("Error deleting lesson:", error);
-      // Handle any error occurred during deletion
     });
   };
 
