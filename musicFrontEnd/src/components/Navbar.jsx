@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 import logo from '../assets/logoW.png';
+import menu_icon from '../assets/menu-icon.png'
 
 const Navbar = () => {
   const [clickedLink, setClickedLink] = useState('Home');
@@ -13,10 +14,10 @@ const Navbar = () => {
     })
 },[]);
 
-const [mobileMenu, setMobileMenu] = useState(false);
-const toggleMenu = ()=>{
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const toggleMenu = ()=>{
   mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
-}
+  };
 
   const handleLogin = () => {
     window.location.href = 'http://localhost:8081/login';
@@ -38,6 +39,7 @@ const toggleMenu = ()=>{
         </div>
         <li><button className={`btn`} onClick={handleLogin}>Login</button></li>
       </ul>
+      <img src={menu_icon} alt="" className='menu-icon' onClick={toggleMenu}/>
     </nav>
   );
 };

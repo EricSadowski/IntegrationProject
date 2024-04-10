@@ -35,10 +35,16 @@
     position: fixed;
     top: 30rem;
   }
-
   /*
+  .container{
+    padding-left: %;
+    padding-right: %;
+  }
+*/
+  
   @media (max-width: 1200px){
   .container{
-    padding-left: 5%;
-    padding-right: 5%;
-  }*/
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
