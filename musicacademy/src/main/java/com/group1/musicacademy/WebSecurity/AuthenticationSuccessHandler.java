@@ -12,11 +12,11 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         boolean isAdmin = authentication.getAuthorities().stream()
-                        .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+                        .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ADMIN"));
         boolean isTeacher = authentication.getAuthorities().stream()
-                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_TEACHER"));
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("TEACHER"));
         boolean isStudent = authentication.getAuthorities().stream()
-                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_STUDENT"));
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("STUDENT"));
         if(isAdmin){
             setDefaultTargetUrl("/admin");
         }
