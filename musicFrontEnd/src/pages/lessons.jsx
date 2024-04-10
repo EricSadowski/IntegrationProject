@@ -8,7 +8,8 @@ function Home() {
   return (
 <>
 
-
+      <Lesson />
+      
       </>
   );
 }

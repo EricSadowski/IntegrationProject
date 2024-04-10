@@ -8,6 +8,7 @@ function Home() {
   return (
     <div className='container'>
       {/* Hero component only on the Home page */}
+      
       <Hero />
       
       {/* Main content */}

@@ -19,6 +19,7 @@ const Navbar = () => {
         <div className='nav-links'>
           <li><Link to="/" onClick={() => setClickedLink('Home')}>Home</Link></li>
           <li><Link to="/instruments" onClick={() => setClickedLink('Instruments')}>Instruments</Link></li>
+          <li><Link to="/lesson" onClick={() => setClickedLink('Lessons')}>Lessons</Link></li>
           <li><Link to="/about" onClick={() => setClickedLink('About')}>About us</Link></li>
           <li><Link to="/testimonials" onClick={() => setClickedLink('Testimonials')}>Testimonials</Link></li>
           <li><Link to="/contact" onClick={() => setClickedLink('Contact')}>Contact us</Link></li>
