@@ -17,9 +17,9 @@ public class HomeController {
         return ResponseEntity.ok("Hello, This is Admin page");
     }
 
-    @GetMapping("/login")
-    public String handleLogin(){
-        return "custom_login";
-    }
+//    @GetMapping("/login")
+//    public String handleLogin(){
+//        return "custom_login";
+//    }
 
 }

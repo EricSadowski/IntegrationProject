@@ -8,4 +8,6 @@ public interface LessonService {
     public Lesson saveLesson(Lesson lesson);
     public List<Lesson> getAllLessons();
     void deleteById(int theId);
+
+    Lesson getLessonById(int id);
 }

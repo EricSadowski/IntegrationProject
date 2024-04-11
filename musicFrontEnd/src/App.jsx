@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Register from './pages/register';
 import Instruments from './pages/instruments';
 import '../src/styles/MainStyles.css' 
+import Lessons from './pages/lessons';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/instruments" element={<Instruments />} />
+          <Route path="/lesson" element={<Lessons />} />
         </Routes>
       </div>
     </Router>

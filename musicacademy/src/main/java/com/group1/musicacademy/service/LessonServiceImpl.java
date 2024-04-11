@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LessonServiceImpl implements LessonService {
@@ -25,5 +26,22 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public void deleteById(int theId) {
         lessonRepository.deleteById(theId);
+    }
+
+    @Override
+    public Lesson getLessonById(int id) {
+        Optional<Lesson> result = lessonRepository.findById(id);
+
+        Lesson theLesson = null;
+
+        if(result.isPresent()){
+            theLesson = result.get();
+        }
+        else{
+            throw new RuntimeException("Did not find lesson");
+        }
+
+        return theLesson;
+
     }
 }
