@@ -7,8 +7,11 @@ function Home() {
 
   return (
 <>
-
-
+<h1 className='h1-not-home'>not functional</h1>
+<div className='register-form'>
+      <Lesson />
+      </div>
+      
       </>
   );
 }
