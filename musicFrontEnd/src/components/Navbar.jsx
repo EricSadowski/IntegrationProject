@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
         <li><button className={`btn`} onClick={handleLogin}>Login</button></li>
       </ul>
-      <img src={menu_icon} alt="" className='menu-icon' onClick={toggleMenu}/>
+      
     </nav>
   );
 };
