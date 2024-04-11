@@ -86,6 +86,10 @@ nav ul li a:hover {
     color: #fff;
   }
 
+.dark-nav{
+    background: #5C5CFF;
+    transition: 0.5s;
+}
 /* ----- media query ----------- */
 @media (max-width: 1000px){
     .logo{

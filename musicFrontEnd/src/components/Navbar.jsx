@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 import logo from '../assets/logoW.png';
-import menu_icon from '../assets/menu-icon.png'
+
+
 
 const Navbar = () => {
   const [clickedLink, setClickedLink] = useState('Home');
-  const [sticky, setSticky] = useState(false);
+  //logic to get Navbar dark-color sticky
+  //const [sticky, setSticky] = useState(false);
 
-  useEffect(()=>{
-    window.addEventListener('scroll', ()=>{
-        window.scrollY > 50 ? setSticky(true) : setSticky(false);
-    })
-},[]);
+  //ternaly operator to check scrollY value
+  //ScrollY:https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
+  //useEffect(()=>{
+    //window.addEventListener('scroll', ()=>{
+        //window.scrollY > 50 ? setSticky(true) : setSticky(false);
+    //})
+//},[]);
 
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const toggleMenu = ()=>{
-  mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
-  };
+  //const [mobileMenu, setMobileMenu] = useState(false);
+  //const toggleMenu = ()=>{
+  //mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
+  //};
 
   const handleLogin = () => {
     window.location.href = 'http://localhost:8081/login';
   };
 
+  //If the sticky is true, use dark-nav, otherwise use default.
   return (
-    <nav className={`container ${sticky? 'dark-nav' : ''}`}>
+    <nav className="container">
       <Link to="/">
         <img src={logo} alt="logo" className='logo' />
       </Link>
-      <ul className={mobileMenu?'':'hide-mobile-menu'}>
+      <ul>
         <div className='nav-links'>
           <li><Link to="/" onClick={() => setClickedLink('Home')}>Home</Link></li>
           <li><Link to="/instruments" onClick={() => setClickedLink('Instruments')}>Instruments</Link></li>

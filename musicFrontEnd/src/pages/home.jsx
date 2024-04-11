@@ -15,12 +15,7 @@ function Home() {
       <Hero />
       
       {/* Main content */}
-      <Title title='Learn to play instruments and more...' />
-      <Instruments />
-      <Title title='About our academy' />
-      <About />
-      <Title title='Review from our students' />
-      <Title title='Contact Us' />
+      
     </div>
   );
 }
