@@ -24,7 +24,7 @@ const Navbar = () => {
   //};
 
   const handleLogin = () => {
-    window.location.href = 'http://localhost:8081/login';
+    window.location.href = 'http://localhost:5173/login';
   };
 
   //If the sticky is true, use dark-nav, otherwise use default.
