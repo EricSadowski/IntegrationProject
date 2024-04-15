@@ -1,15 +1,18 @@
 import React from 'react';
 
 
-function Home() {
+function Instruments() {
   // Change the title on the internet tab
-  document.title = "Home";
+  document.title = "Instruments";
+
+
 
   return (
 <>
-
+<div className='page-container'>
+</div>
       </>
   );
 }
 
-export default Home;
+export default Instruments;
