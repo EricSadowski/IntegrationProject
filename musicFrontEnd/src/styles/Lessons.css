@@ -1,0 +1,23 @@
+.lesson-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10rem;
+    background-color: white
+}
+
+.lesson-and-calendar {
+    position: fixed;
+    top: 20rem;
+}
+
+.add-lesson-form {
+    position: fixed;
+    top: 30rem;
+}
+
+.add-lesson-form form .submit-lesson {
+    margin-left: 0.4rem;
+  }
+  

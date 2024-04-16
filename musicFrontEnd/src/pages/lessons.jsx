@@ -1,19 +1,27 @@
 import React from 'react';
 import Lesson from "../components/Lesson";
 import CalendarLesson from '../components/CalendarLesson';
+import '../styles/Lessons.css';
 
-function Home() {
+function Lessons() {
   // Change the title on the internet tab
-  document.title = "Home";
+  document.title = "Lessons";
 
   return (
-<>
-
-      <Lesson />
-      <CalendarLesson/>
-      
-      </>
+    <>
+      <div className='page-container'>
+        <div className='lesson-and-calendar'>
+          <div className='lesson-form'>
+            <CalendarLesson />
+            <br />
+          </div>
+          <div className='calendar'>
+            {/* <Lesson /> */}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
-export default Home;
+export default Lessons;

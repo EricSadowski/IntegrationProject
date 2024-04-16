@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
 
 const Lesson = () => {
   const [name, setName] = useState("");
@@ -114,21 +113,30 @@ const Lesson = () => {
   };
 
   return (
-    <div>
-      <h1>Add Lesson</h1>
-      <form>
-        <input
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-          placeholder="Lesson Name"
-        />
-        <br />
-        <input type="date" value={date} onChange={handleDateChange} />
-        <input type="submit" value="Submit" onClick={handleSubmit} />
-      </form>
-      <h1>Lessons</h1>
+    <div className="lesson-container">
+      <h1 className="h1-not-home">Add Lesson</h1>
+      <div className="add-lesson-form">
+  <form>
+    <input
+      type="text"
+      value={name}
+      onChange={handleNameChange}
+      placeholder="Lesson Name"
+    />
+    <br /> <br />
+    <input type="date" value={date} onChange={handleDateChange} />
+    <input
+      type="submit"
+      value="Submit"
+      className="submit-lesson"
+      onClick={handleSubmit}
+    />
+  </form>
+</div>
+
+
       <div>
+
         {lessons.map((lesson) => (
           <div key={lesson.id}>
             Id: {lesson.id} <br />

@@ -49,10 +49,10 @@ const CalendarLesson = () => {
     }
 
   return (
-    <div >
-        <h1>Calendar</h1>
+    <div className='lesson-container'>
+        <h1 className='h1-not-home'>Calendar</h1>
         <h2>Add New Lesson</h2>
-        <div>
+        <div className='calendar'>
             <input type='text' placeholder='Add Title' style={{width: "20%", marginRight: "10px"}}
             value={newEvent.title} onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
             />
