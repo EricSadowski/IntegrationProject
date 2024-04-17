@@ -76,7 +76,8 @@ const RegisterStudentForm = () => {
   return (
     <div className='page-container'>
       <div className='register-form'>
-        <h1 className='h1-not-home'>Register<span className="close-button" onClick={handleClose}>X</span></h1>
+        <h1>Register<span className="close-button" onClick={handleClose}>X</span></h1>
+        <br />
         <form onSubmit={handleSubmit}>
           <div>
             <label>Username:</label>
@@ -87,6 +88,7 @@ const RegisterStudentForm = () => {
             <label>Password: </label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
+          <br />
           <button type="submit">Register</button>
           {error && <div className="error">{error}</div>}
           {successMessage && <div className="success">{successMessage}</div>}
