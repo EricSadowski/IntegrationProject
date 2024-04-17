@@ -6,8 +6,6 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const [loggedInUsername, setLoggedInUsername] = useState('');
   const [visible, setVisible] = useState(true);
 
   const handleSubmit = async (e) => {
@@ -19,12 +17,9 @@ const LoginForm = () => {
         password
       });
       console.log('Login successful!');
-      setLoggedInUsername(username);
-      setSuccess('Login successful!');
-      setError('');
+      setVisible(false);
     } catch (error) {
       setError('Invalid username or password');
-      setSuccess('');
     }
   };
 
@@ -54,7 +49,6 @@ const LoginForm = () => {
           <br />
           <button type="submit">Login</button>
           {error && <div className="error">{error}</div>}
-          {success && <div className="success">{success}</div>}
         </form>        
       </div>
     </div>
