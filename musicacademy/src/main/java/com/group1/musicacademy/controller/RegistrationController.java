@@ -49,6 +49,28 @@ public class RegistrationController {
         return "Registration successful! You can now login.";
     }
 
+    @PostMapping("/register/teacher")
+    public String createTeacher(@RequestBody User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
+            return "Username already exists";
+        }
+    
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    
+        // Retrieve the ROLE_STUDENT from the database
+        Role role = roleRepository.findByName("ROLE_TEACHER");
+        if (role == null) {
+            // Handle the case if ROLE_TEACHER doesn't exist
+            return "Role not found";
+        }
+    
+        // Assign the retrieved role to the user
+        user.setRoles(Collections.singletonList(role));
+    
+        userRepository.save(user);
+        return "Registration successful! You can now login.";
+    }
+
     @GetMapping("/check-username/{username}")
     public boolean checkUsernameAvailability(@PathVariable String username) {
         return !userRepository.existsByUsername(username);

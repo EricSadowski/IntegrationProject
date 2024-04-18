@@ -79,13 +79,22 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    //Initialize the roles
     @PostConstruct
     public void initRoles() {
-        Role role = roleRepository.findByName("ROLE_STUDENT");
-        if (role == null) {
-            role = new Role();
-            role.setName("ROLE_STUDENT");
-            roleRepository.save(role);
+        Role studentRole = roleRepository.findByName("ROLE_STUDENT");
+        if (studentRole == null) {
+            studentRole = new Role();
+            studentRole.setName("ROLE_STUDENT");
+            roleRepository.save(studentRole);
+        }
+    
+        Role teacherRole = roleRepository.findByName("ROLE_TEACHER");
+        if (teacherRole == null) {
+            teacherRole = new Role();
+            teacherRole.setName("ROLE_TEACHER");
+            roleRepository.save(teacherRole);
         }
     }
+    
 }

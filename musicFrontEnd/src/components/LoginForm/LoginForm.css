@@ -11,7 +11,7 @@
 
 .register-form {
   position: relative;
-  width: 300px;
+  width: 350px;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
@@ -68,15 +68,19 @@ button:hover {
   color: green;
 }
 
+.btn {
+  margin: 10px;
+}
+
 
 /* Screen size fixes */
 @media (max-width: 2000px) {
   .page-container {
-    left: 35rem;
+    left: 40rem;
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1700px) {
   .page-container {
     top: 30rem;
     left: 0;
