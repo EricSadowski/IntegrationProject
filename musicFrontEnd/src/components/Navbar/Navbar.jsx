@@ -20,7 +20,9 @@ const Navbar = ({ toggleLoginForm }) => {
 
   return (
     <nav className={`container ${sticky ? 'dark-nav' : ''}`}>
-      <img src={logo} alt="" className='logo' />
+      <a href="/" className='logo-link'>
+        <img src={logo} alt="Music Academy Logo" className='logo' />
+      </a>
       <ul className={mobileMenu ? '' : 'hide-mobile-menu'}>
         <li><Link to='hero' smooth={true} offset={0} duration={500}>Home</Link></li>
         <li><Link to='instruments' smooth={true} offset={-300} duration={500}>Instruments</Link></li>
@@ -29,7 +31,7 @@ const Navbar = ({ toggleLoginForm }) => {
         <li><Link to='contact' smooth={true} offset={-300} duration={500}>Contact</Link></li>
         <li><button className='btn' onClick={toggleLoginForm}>Login</button></li>
       </ul>
-      <img src={menu_icon} alt="menu icon" className='menu-icon' onClick={toggleMenu}/>
+      <img src={menu_icon} alt="menu icon" className='menu-icon' onClick={toggleMenu} />
     </nav>
   );
 };

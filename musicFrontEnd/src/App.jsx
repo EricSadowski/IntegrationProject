@@ -10,28 +10,39 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterStudentForm from './components/RegisterForm/RegisterStudentForm';
+import RegisterTeacherForm from './components/RegisterForm/RegisterTeacherForm';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showRegisterStudent, setShowRegisterStudent] = useState(false);
+  const [showRegisterTeacher, setShowRegisterTeacher] = useState(false);
 
   // Function to toggle login form visibility
   const toggleLoginForm = () => {
     setShowLogin(!showLogin);
-    setShowRegister(false); 
+    setShowRegisterStudent(false);
+    setShowRegisterTeacher(false);
   };
 
-  // Function to toggle registration form visibility
-  const toggleRegisterForm = () => {
-    setShowRegister(!showRegister);
-    setShowLogin(false); 
+  // Function to toggle registration form visibility for students
+  const toggleRegisterStudentForm = () => {
+    setShowRegisterStudent(!showRegisterStudent);
+    setShowLogin(false);
+    setShowRegisterTeacher(false);
+  };
+
+  // Function to toggle registration form visibility for teachers
+  const toggleRegisterTeacherForm = () => {
+    setShowRegisterTeacher(!showRegisterTeacher);
+    setShowLogin(false);
+    setShowRegisterStudent(false);
   };
 
   return (
     document.title="Music Academy",
     <div>
-      <Navbar toggleLoginForm={toggleLoginForm} toggleRegisterForm={toggleRegisterForm} />
-      <Hero toggleRegisterForm={toggleRegisterForm} />
+      <Navbar toggleLoginForm={toggleLoginForm} />
+      <Hero toggleRegisterStudentForm={toggleRegisterStudentForm} toggleRegisterTeacherForm={toggleRegisterTeacherForm} />
       <div className="container">
         <Title title="Instruments" />
         <Instruments />
@@ -44,7 +55,8 @@ function App() {
         <Footer />
       </div>
       {showLogin && <LoginForm />}
-      {showRegister && <RegisterStudentForm />}
+      {showRegisterStudent && <RegisterStudentForm />}
+      {showRegisterTeacher && <RegisterTeacherForm />}
     </div>
   );
 }

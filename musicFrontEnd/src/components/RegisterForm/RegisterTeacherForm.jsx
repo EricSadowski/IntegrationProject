@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../LoginForm/LoginForm'
 
-const RegisterStudentForm = () => {
+const RegisterTeacherForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -51,10 +51,10 @@ const RegisterStudentForm = () => {
     
       console.log("Username check passed. Username:", username);
       
-      await axios.post('http://localhost:8081/register/user', {
+      await axios.post('http://localhost:8081/register/teacher', {
         username,
         password,
-        role: "ROLE_STUDENT" 
+        role: "ROLE_TEACHER" 
       });
       setSuccessMessage('Registration successful! You can now login.');
       setUsername('');
@@ -76,7 +76,7 @@ const RegisterStudentForm = () => {
   return (
     <div className='page-container'>
       <div className='register-form'>
-        <h1>Register Student<span className="close-button" onClick={handleClose}>X</span></h1>
+        <h1>Register Teacher<span className="close-button" onClick={handleClose}>X</span></h1>
         <br />
         <form onSubmit={handleSubmit}>
           <div>
@@ -98,4 +98,4 @@ const RegisterStudentForm = () => {
   );
 };
 
-export default RegisterStudentForm;
+export default RegisterTeacherForm;
