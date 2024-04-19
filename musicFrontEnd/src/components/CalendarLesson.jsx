@@ -41,12 +41,40 @@ const events = [
 
 const CalendarLesson = () => {
 
-    const [newEvent, setNewEvent] = useState({title:"", start: "", end: ""})
+    const [newEvent, setNewEvent] = useState({name:"", eStart: "", eEnd: ""})
     const [allEvents, setAllEvents] = useState(events);
 
-    function handleAddEvent(){
-        setAllEvents([...allEvents, newEvent])
-    }
+    // function handleAddEvent(){
+    //     setAllEvents([...allEvents, newEvent])
+    // }
+
+    const handleAddEvent = (e) => {
+        e.preventDefault();
+        const start = newEvent.eStart + "T12:00:00";
+        const end = newEvent.eEnd + "T12:00:00";
+        const title = newEvent.name;
+        const lesson = { title, start, end };
+        console.log(lesson);
+    
+        fetch("http://localhost:8081/lesson/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(lesson),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            console.log("Lesson added:", data);
+            fetchLessons();
+          })
+          .catch((error) => {
+            console.error("Error adding lesson:", error);
+          });
+      };
 
   return (
     <div className='lesson-container'>
@@ -54,12 +82,12 @@ const CalendarLesson = () => {
         <h2>Add New Lesson</h2>
         <div className='calendar'>
             <input type='text' placeholder='Add Title' style={{width: "20%", marginRight: "10px"}}
-            value={newEvent.title} onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+            value={newEvent.name} onChange={(e) => setNewEvent({...newEvent, name: e.target.value})}
             />
             <DatePicker placeholderText='Start Date' style={{marginRight: "10px"}}
-            selected={newEvent.start} onChange={(start) => setNewEvent({...newEvent, start})} />
+            selected={newEvent.eStart} onChange={(eStart) => setNewEvent({...newEvent, eStart})} />
                         <DatePicker placeholderText='End Date' style={{marginRight: "10px"}}
-            selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent, end})} />
+            selected={newEvent.eEnd} onChange={(eEnd) => setNewEvent({...newEvent, eEnd})} />
             <button style={{marginTop: "10px"}} onClick={handleAddEvent}>Add Lesson</button>
         </div>
      <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{height:500, margin:"50px"}}/>
