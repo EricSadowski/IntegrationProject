@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 const Lesson = () => {
-  const [name, setName] = useState("");
+  const [title, setName] = useState("");
   const [date, setDate] = useState();
   const [lessons, setLessons] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updatedLessonData, setUpdatedLessonData] = useState({
     id: 0,
-    name: "",
+    title: "",
     start: "",
   });
 
@@ -24,7 +24,7 @@ const Lesson = () => {
   const handleUpdateClick = (lesson) => {
     setUpdatedLessonData({
       id: lesson.id,
-      name: lesson.name,
+      title: lesson.title,
       start: lesson.start,
     });
     toggleUpdateModal();
@@ -33,7 +33,7 @@ const Lesson = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const start = date + "T12:00:00";
-    const lesson = { name, start };
+    const lesson = { title, start };
     console.log(lesson);
 
     fetch("http://localhost:8081/lesson/add", {
@@ -57,14 +57,14 @@ const Lesson = () => {
   };
 
   const handleUpdateLesson = () => {
-    const { id, name, start } = updatedLessonData;
+    const { id, title, start } = updatedLessonData;
     const updatedStart = start + "T12:00:00"; // Append "T12:00:00" to the start date
     fetch(`http://localhost:8081/lesson/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, start: updatedStart }), // Use updatedStart in the request body
+      body: JSON.stringify({ title, start: updatedStart }), // Use updatedStart in the request body
     })
       .then((response) => {
         if (!response.ok) {
@@ -119,7 +119,7 @@ const Lesson = () => {
       <form>
         <input
           type="text"
-          value={name}
+          value={title}
           onChange={handleNameChange}
           placeholder="Lesson Name"
         />
@@ -132,7 +132,7 @@ const Lesson = () => {
         {lessons.map((lesson) => (
           <div key={lesson.id}>
             Id: {lesson.id} <br />
-            Name: {lesson.name} <br />
+            Name: {lesson.title} <br />
             Date: {lesson.start} <br />
             <button onClick={() => handleDelete(lesson.id)}>Delete</button>
             <button onClick={() => handleUpdateClick(lesson)}>Update</button>
@@ -151,11 +151,11 @@ const Lesson = () => {
             <form>
               <input
                 type="text"
-                value={updatedLessonData.name}
+                value={updatedLessonData.title}
                 onChange={(e) =>
                   setUpdatedLessonData({
                     ...updatedLessonData,
-                    name: e.target.value,
+                    title: e.target.value,
                   })
                 }
                 placeholder="Lesson Name"

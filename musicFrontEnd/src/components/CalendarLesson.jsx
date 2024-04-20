@@ -50,8 +50,8 @@ const CalendarLesson = () => {
 
     const handleAddEvent = (e) => {
         e.preventDefault();
-        const start = newEvent.eStart + "T12:00:00";
-        const end = newEvent.eEnd + "T12:00:00";
+        const start = newEvent.eStart;
+        const end = newEvent.eEnd;
         const title = newEvent.name;
         const lesson = { title, start, end };
         console.log(lesson);
