@@ -20,34 +20,12 @@ const localizer = dateFnsLocalizer({
     locales
 })
 
-// const events = [
-//     {
-//         title: "Piano",
-//         allDay: true,
-//         start: new Date(2024,3,23),
-//         end: new Date(2024,3,23)
-//     },
-//     {
-//         title: "Guitar",
-//         start: new Date(2024,3,24),
-//         end: new Date(2024,3,24)
-//     },
-//     {
-//         title: "Singing",
-//         start: new Date(2024,3,25),
-//         end: new Date(2024,3,25)
-//     }
-// ]
 
 
 const CalendarLesson = () => {
 
     const [newEvent, setNewEvent] = useState({name:"", eStart: "", eEnd: ""})
     const [allEvents, setAllEvents] = useState([]);
-
-    // function handleAddEvent(){
-    //     setAllEvents([...allEvents, newEvent])
-    // }
 
     const fetchLessons = () => {
       fetch("http://localhost:8081/lesson/getAll")
@@ -64,11 +42,18 @@ const CalendarLesson = () => {
 
     const handleAddEvent = (e) => {
         e.preventDefault();
-        const start = newEvent.eStart;
-        const end = newEvent.eEnd;
-        const title = newEvent.name;
-        const lesson = { title, start, end };
-        console.log(lesson);
+
+        const formatToUTC = (date) => date && new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+
+        const startUTC = formatToUTC(newEvent.eStart);
+        const endUTC = formatToUTC(newEvent.eEnd);
+        
+        const lesson = {
+            title: newEvent.name,
+            start: startUTC.toISOString(), 
+            end: endUTC.toISOString()
+        };
+    
 
     
         fetch("http://localhost:8081/lesson/add", {
