@@ -11,6 +11,13 @@ import Footer from './components/Footer/Footer';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterStudentForm from './components/RegisterForm/RegisterStudentForm';
 import RegisterTeacherForm from './components/RegisterForm/RegisterTeacherForm';
+<<<<<<< HEAD
+=======
+import Lessons from './components/lessons';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
+>>>>>>> 358d045a526d43d60c112821747b7449b9cbaa68
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -53,11 +60,23 @@ function App() {
         <Title title="Contact us" />
         <Contact />
         <Footer />
+
+        
+
       </div>
       {showLogin && <LoginForm />}
       {showRegisterStudent && <RegisterStudentForm />}
       {showRegisterTeacher && <RegisterTeacherForm />}
+<<<<<<< HEAD
+=======
+     <Router>
+     <Routes>
+      <Route path="/lesson" element={<Lessons />} />
+      </Routes>
+      </Router>
+>>>>>>> 358d045a526d43d60c112821747b7449b9cbaa68
     </div>
+    
   );
 }
 
