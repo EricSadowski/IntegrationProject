@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Calendar } from 'react-big-calendar';
 import { dateFnsLocalizer } from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css"
@@ -20,33 +20,47 @@ const localizer = dateFnsLocalizer({
     locales
 })
 
-const events = [
-    {
-        title: "Piano",
-        allDay: true,
-        start: new Date(2024,3,23),
-        end: new Date(2024,3,23)
-    },
-    {
-        title: "Guitar",
-        start: new Date(2024,3,24),
-        end: new Date(2024,3,24)
-    },
-    {
-        title: "Singing",
-        start: new Date(2024,3,25),
-        end: new Date(2024,3,25)
-    }
-]
+// const events = [
+//     {
+//         title: "Piano",
+//         allDay: true,
+//         start: new Date(2024,3,23),
+//         end: new Date(2024,3,23)
+//     },
+//     {
+//         title: "Guitar",
+//         start: new Date(2024,3,24),
+//         end: new Date(2024,3,24)
+//     },
+//     {
+//         title: "Singing",
+//         start: new Date(2024,3,25),
+//         end: new Date(2024,3,25)
+//     }
+// ]
+
 
 const CalendarLesson = () => {
 
     const [newEvent, setNewEvent] = useState({name:"", eStart: "", eEnd: ""})
-    const [allEvents, setAllEvents] = useState(events);
+    const [allEvents, setAllEvents] = useState([]);
 
     // function handleAddEvent(){
     //     setAllEvents([...allEvents, newEvent])
     // }
+
+    const fetchLessons = () => {
+      fetch("http://localhost:8081/lesson/getAll")
+        .then((res) => res.json())
+        .then((result) => {
+          setAllEvents(result);
+        });
+    };
+    
+    useEffect(() => {
+      fetchLessons();
+    }, []);
+
 
     const handleAddEvent = (e) => {
         e.preventDefault();
@@ -55,6 +69,7 @@ const CalendarLesson = () => {
         const title = newEvent.name;
         const lesson = { title, start, end };
         console.log(lesson);
+
     
         fetch("http://localhost:8081/lesson/add", {
           method: "POST",
@@ -85,12 +100,25 @@ const CalendarLesson = () => {
             value={newEvent.name} onChange={(e) => setNewEvent({...newEvent, name: e.target.value})}
             />
             <DatePicker placeholderText='Start Date' style={{marginRight: "10px"}}
-            selected={newEvent.eStart} onChange={(eStart) => setNewEvent({...newEvent, eStart})} />
+            selected={newEvent.eStart} onChange={(eStart) => setNewEvent({...newEvent, eStart})} 
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat='MMMM d, yyyy h:mm aa'
+
+            />
                         <DatePicker placeholderText='End Date' style={{marginRight: "10px"}}
-            selected={newEvent.eEnd} onChange={(eEnd) => setNewEvent({...newEvent, eEnd})} />
+            selected={newEvent.eEnd} onChange={(eEnd) => setNewEvent({...newEvent, eEnd})} 
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat='MMMM d, yyyy h:mm aa'
+
+            />
             <button style={{marginTop: "10px"}} onClick={handleAddEvent}>Add Lesson</button>
         </div>
-     <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{height:500, margin:"50px"}}/>
+     <Calendar localizer={localizer} events={allEvents}   startAccessor={(event) => new Date(event.start)}
+  endAccessor={(event) => new Date(event.end)} style={{height:500, margin:"50px"}}/>
 
     </div>
   )
