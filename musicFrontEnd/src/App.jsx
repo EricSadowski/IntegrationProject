@@ -11,6 +11,10 @@ import Footer from './components/Footer/Footer';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterStudentForm from './components/RegisterForm/RegisterStudentForm';
 import RegisterTeacherForm from './components/RegisterForm/RegisterTeacherForm';
+import Lessons from './components/lessons';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -53,11 +57,20 @@ function App() {
         <Title title="Contact us" />
         <Contact />
         <Footer />
+
+        
+
       </div>
       {showLogin && <LoginForm />}
       {showRegisterStudent && <RegisterStudentForm />}
       {showRegisterTeacher && <RegisterTeacherForm />}
+     <Router>
+     <Routes>
+      <Route path="/lesson" element={<Lessons />} />
+      </Routes>
+      </Router>
     </div>
+    
   );
 }
 
