@@ -1,14 +1,11 @@
 package com.group1.musicacademy.repository;
 
-import com.group1.musicacademy.entity.User;
+import com.group1.musicacademy.model.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+public interface MyUserRepository extends JpaRepository<MyUser, Integer> {
 
-    default boolean existsByUsername(String username) {
-        return findByUsername(username).isPresent();
-    }
+    Optional<MyUser> findByUsername(String username);
 }
