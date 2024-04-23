@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../LoginForm/LoginForm'
 
 const RegisterStudentForm = () => {
   const [username, setUsername] = useState('');
@@ -25,9 +24,6 @@ const RegisterStudentForm = () => {
     setError('');
     setSuccessMessage('');
     
-    console.log("Username:", username);
-    console.log("Password:", password);
-    
     if (!validatePassword(password)) {
       setError('Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and be 8-14 characters long.');
       return;
@@ -38,23 +34,17 @@ const RegisterStudentForm = () => {
       return;
     }
     
-    console.log("Validation passed. Username:", username);
-    console.log("Validation passed. Password:", password);
-    
     try {
-      const usernameResponse = await axios.get(`http://localhost:8081/check-username/${username}`);
+      const usernameResponse = await axios.get(`http://localhost:8081/auth/check-username/${username}`);
       
       if (!usernameResponse.data) { 
         setError('Username is already taken. Please try another.');
         return;
       }
     
-      console.log("Username check passed. Username:", username);
-      
-      await axios.post('http://localhost:8081/register/user', {
+      await axios.post('http://localhost:8081/auth/register/student', {
         username,
-        password,
-        role: "ROLE_STUDENT" 
+        password
       });
       setSuccessMessage('Registration successful! You can now login.');
       setUsername('');
@@ -79,17 +69,15 @@ const RegisterStudentForm = () => {
         <h1>Register Student<span className="close-button" onClick={handleClose}>X</span></h1>
         <br />
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Username:</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input type="text" id="username" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
-          <br />
-          <div>
-            <label>Password: </label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <br />
-          <button type="submit">Register</button>
+          <button type="submit" className="btn btn-primary">Register</button>
           {error && <div className="error">{error}</div>}
           {successMessage && <div className="success">{successMessage}</div>}
         </form>

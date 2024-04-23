@@ -4,7 +4,7 @@ import logo from '../../assets/logoW.png';
 import menu_icon from '../../assets/menu-icon.png';
 import { Link } from 'react-scroll';
 
-const Navbar = ({ toggleLoginForm }) => {
+const Navbar = ({ toggleLoginForm, loggedIn }) => {
   const [sticky, setSticky] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -14,8 +14,17 @@ const Navbar = ({ toggleLoginForm }) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log('loggedIn:', loggedIn);
+  }, [loggedIn]);
+
   const toggleMenu = () => {
     setMobileMenu(!mobileMenu);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
   };
 
   return (
@@ -29,7 +38,11 @@ const Navbar = ({ toggleLoginForm }) => {
         <li><Link to='about' smooth={true} offset={-300} duration={500}>About us</Link></li>
         <li><Link to='testimonials' smooth={true} offset={-300} duration={500}>Testimonials</Link></li>
         <li><Link to='contact' smooth={true} offset={-300} duration={500}>Contact</Link></li>
-        <li><button className='btn' onClick={toggleLoginForm}>Login</button></li>
+        {loggedIn ? (
+          <li><button className='btn' onClick={handleLogout}>Logout</button></li>
+        ) : (
+          <li><button className='btn' onClick={toggleLoginForm}>Login</button></li>
+        )}
       </ul>
       <img src={menu_icon} alt="menu icon" className='menu-icon' onClick={toggleMenu} />
     </nav>

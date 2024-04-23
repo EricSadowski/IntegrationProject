@@ -11,15 +11,16 @@ import Footer from './components/Footer/Footer';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterStudentForm from './components/RegisterForm/RegisterStudentForm';
 import RegisterTeacherForm from './components/RegisterForm/RegisterTeacherForm';
+
 import Lessons from './components/lessons';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegisterStudent, setShowRegisterStudent] = useState(false);
   const [showRegisterTeacher, setShowRegisterTeacher] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false); 
 
   // Function to toggle login form visibility
   const toggleLoginForm = () => {
@@ -42,10 +43,15 @@ function App() {
     setShowRegisterStudent(false);
   };
 
+  // Callback function to be called after successful login
+  const handleLoginSuccess = () => {
+    setShowLogin(false);
+  };
+
   return (
     document.title="Music Academy",
     <div>
-      <Navbar toggleLoginForm={toggleLoginForm} />
+      <Navbar toggleLoginForm={toggleLoginForm} loggedIn={loggedIn} /> 
       <Hero toggleRegisterStudentForm={toggleRegisterStudentForm} toggleRegisterTeacherForm={toggleRegisterTeacherForm} />
       <div className="container">
         <Title title="Instruments" />
@@ -56,19 +62,17 @@ function App() {
         <Testimonials />
         <Title title="Contact us" />
         <Contact />
-        <Footer />
-
-        
-
+        <Footer />   
       </div>
-      {showLogin && <LoginForm />}
+      {showLogin && <LoginForm setLoggedIn={setLoggedIn} onLoginSuccess={handleLoginSuccess} />}
       {showRegisterStudent && <RegisterStudentForm />}
       {showRegisterTeacher && <RegisterTeacherForm />}
+{/* 
      <Router>
      <Routes>
       <Route path="/lesson" element={<Lessons />} />
       </Routes>
-      </Router>
+      </Router> */}
     </div>
     
   );

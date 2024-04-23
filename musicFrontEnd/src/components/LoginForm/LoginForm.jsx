@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({ setLoggedIn, onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,12 +12,14 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8081/login/submit', {
+      const response = await axios.post('http://localhost:8081/auth/authenticate', {
         username,
         password
       });
       console.log('Login successful!');
       setVisible(false);
+      setLoggedIn(true); 
+      onLoginSuccess();
     } catch (error) {
       setError('Invalid username or password');
     }

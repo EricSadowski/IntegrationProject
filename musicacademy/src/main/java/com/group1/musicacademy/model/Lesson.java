@@ -12,14 +12,8 @@ public class Lesson {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
+    private String name;
     private LocalDateTime start;
-    private LocalDateTime end;
-
-    private int teacherId;
-
-
-
 
     public Lesson(){
 
@@ -33,12 +27,12 @@ public class Lesson {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getStart() {
@@ -48,21 +42,4 @@ public class Lesson {
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
-
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
-    }
-
-    public int getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
-    }
-
 }
